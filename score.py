@@ -22,10 +22,17 @@ class ScoreBoard(Turtle):
         self.hideturtle()
 
     def score_update(self, direction):
+        self.clear()
+        self.set_partition()
         if direction == "left":
+            self.goto((-300, 235))
             self.write(f"{self.score}", align=direction, font=FONT)
         else:
+            self.goto((300, 235))
             self.write(f"{self.score}", align=direction, font=FONT)
+        if self.score >= 5:
+            self.game_over(direction)
+            return
 
     def set_partition(self):
         partition = super()
@@ -39,6 +46,6 @@ class ScoreBoard(Turtle):
             partition.penup()
             partition.forward(10)
 
-    def game_over(self):
+    def game_over(self, winner):
         self.goto((0, 0))
-        self.write("GAME OVER", align=ALIGNMENT, font=FONT)
+        self.write(f"GAME OVER \n{winner} wins", align=ALIGNMENT, font=FONT)

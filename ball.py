@@ -10,8 +10,11 @@ class Ball(Turtle):
         self.penup()
         self.setheading(90)
         self.speed("slowest")
+        self.move_speed = 1
 
     def set_angle(self, direction):
+        self.goto((0, 0))
+        self.move_speed = 1
         angle = random.randint(20, 170)
         if direction == "right":
             self.right(angle)
@@ -19,4 +22,4 @@ class Ball(Turtle):
             self.left(angle)
 
     def move(self):
-        self.forward(20)
+        self.forward(18 * self.move_speed)
